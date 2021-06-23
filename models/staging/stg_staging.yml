@@ -1,7 +1,7 @@
 #Указываем чтобы корректно работало на новых версиях dbt
 version: 2 
 
-#Указываем папке, название таблицы, название колонки и какие тесты выполнять. Важно соблюдать структуру написания кода.
+#Указываем название таблицы, название колонки и какие тесты выполнять. Важно соблюдать структуру написания кода.
 models:
  - name: stg_sessions
   #Прописываем описание файла
@@ -15,3 +15,23 @@ models:
         - unique
         - accepted_values:
               values: ['2021-01-01','2021-01-02','2021-01-03']
+
+#Указываем название датасета (name), название проекта (database) и название таблицы (tables)
+#Также можно задать описание полей и какие тесты выполнять с этими полями             
+sources:    
+  - name: n_krivosheiev
+    description: description of the dataset    
+    database: owox-analytics
+    tables:
+      - name: owoxbi_sessions_20210607         
+        description: description of the table
+        columns:
+          - name: date
+            description: date of the session
+            tests:
+              - not_null
+          - name: session_id  
+            description: primary key for sessions
+            tests:
+              - not_null  
+              - unique

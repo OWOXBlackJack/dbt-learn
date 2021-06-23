@@ -3,7 +3,7 @@ SELECT
   date,
   sessionId,  
 FROM
-  `owox-analytics.n_krivosheiev.owoxbi_sessions_*`  
+  {{source ('n_krivosheiev','owoxbi_sessions_20210607')}}
 GROUP BY 1,2)
 
 SELECT * FROM sessions
